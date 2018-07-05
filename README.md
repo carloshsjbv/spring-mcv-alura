@@ -1,2 +1,2 @@
 # spring-mcv-alura
-Curso Spring MVC I - Alura
+Arquivos de Aula | Curso Spring MVC I - Alura
