@@ -11,7 +11,7 @@ public class HomeController {
 
         System.out.println("Entrando na home");
         return "home";
-        
+
     }
 
 }

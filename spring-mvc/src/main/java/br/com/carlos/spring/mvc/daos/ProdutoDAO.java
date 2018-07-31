@@ -1,22 +1,49 @@
 package br.com.carlos.spring.mvc.daos;
 
 import br.com.carlos.spring.mvc.models.Produto;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import javax.persistence.Query;
 
-// Cuida da persistência da entidade Produto no banco de dados
-// @Repository mapeia ProdutoDAO para que o @Autowired do Spring enxergue a classe
+/**
+ * Recurso persistível em banco de dados: ProdutoDAO
+ *
+ * @Repository mapeia ProdutoDAO para que o @Autowired do Spring enxergue a
+ * classe.
+ *
+ * OBS.: Também é possiíve utilizar @Component, que é Pai de @Repository.
+ * Entretanto por uma questãi semantica, utilizou-se @Repository.
+ *
+ *
+ * @author Carlos H
+ */
 @Repository
-//@Component // Pai de @Repository. Mas neste caso, por questão semantica, utilizou-se @Repository
+@Transactional
 public class ProdutoDAO {
 
-    // Gerenciador gerenciado pelo Spring
+    /**
+     * Gerenciador de entidades fornecido pelo Spring.
+     */
     @PersistenceContext
     private EntityManager manager;
 
+    /**
+     * Método de inserção.
+     *
+     * @param produto
+     */
     public void gravar(Produto produto) {
         manager.persist(produto);
+    }
+
+    public List<Produto> listar() {
+
+        return manager.createQuery("SELECT * FROM PRODUTO", Produto.class).getResultList();
+
     }
 
 }
