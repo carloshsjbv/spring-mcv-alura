@@ -36,13 +36,13 @@ public class ProdutoDAO {
      *
      * @param produto
      */
-    public void gravar(Produto produto) {
+    public void salvar(Produto produto) {
         manager.persist(produto);
     }
 
     public List<Produto> listar() {
 
-        return manager.createQuery("SELECT * FROM PRODUTO", Produto.class).getResultList();
+        return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 
     }
 

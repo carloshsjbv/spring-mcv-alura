@@ -8,12 +8,14 @@
         <title>Formulário</title>
     </head>
     <body>
+        <h1> Lista de Produtos Cadastrados </h1>
+        <p> ${sucesso} </p>
         <table>
             <thead>
                 <tr>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Páginas</th>
+                    <td>Título</td>
+                    <td>Descrição</td>
+                    <td>Páginas</td>
                 </tr>
             </thead>
             <tbody>
