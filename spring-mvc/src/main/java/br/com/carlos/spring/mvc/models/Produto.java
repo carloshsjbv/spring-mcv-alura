@@ -1,7 +1,9 @@
 package br.com.carlos.spring.mvc.models;
 
+import java.util.Calendar;
 import javax.persistence.*;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Produto {
@@ -11,17 +13,23 @@ public class Produto {
     private int id;
 
     private String titulo;
+
     private String descricao;
     private int paginas;
 
+    @DateTimeFormat
+    private Calendar dataLancamento;
+
+    private String sumarioPath;
+
     /**
-     * Denota relação com a classe Preco, porém com a utilização da anotação 
-     * abaixo, o relacionamento é automático e é criada uma tabela destinada 
+     * Denota relação com a classe Preco, porém com a utilização da anotação
+     * abaixo, o relacionamento é automático e é criada uma tabela destinada
      * somente ao armazenamento de preços.
-     * 
+     *
      */
     @ElementCollection
-    private List<Preco> preco;
+    private List<Preco> precos;
 
     public int getId() {
         return id;
@@ -55,17 +63,41 @@ public class Produto {
         this.paginas = paginas;
     }
 
-    public List<Preco> getPreco() {
-        return preco;
+    public List<Preco> getPrecos() {
+        return precos;
     }
 
-    public void setPreco(List<Preco> preco) {
-        this.preco = preco;
+    public void setPrecos(List<Preco> precos) {
+        this.precos = precos;
+    }
+
+    public Calendar getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(Calendar dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
+
+    public String getSumarioPath() {
+        return sumarioPath;
+    }
+
+    public void setSumarioPath(String sumarioPath) {
+        this.sumarioPath = sumarioPath;
     }
 
     @Override
     public String toString() {
-        return "Produto{" + "id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas + ", preco=" + preco + '}';
+        return "Produto "
+                + "{" + "id=" + id
+                + ", titulo=" + titulo
+                + ", descricao=" + descricao
+                + ", paginas=" + paginas
+                + ", dataLancamento=" + dataLancamento
+                + ", preco=" + precos
+                + ", preco=" + sumarioPath
+                + '}';
     }
 
 }

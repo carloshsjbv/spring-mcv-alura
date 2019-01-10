@@ -1,6 +1,8 @@
 package br.com.carlos.spring.mvc.conf;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -41,4 +43,15 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
         return new Filter[]{encodingFilter};
     }
 
+    /**
+     * É preciso registrar a configuração do Multipart no Servlet
+     * @param registration 
+     */
+    @Override
+    protected void customizeRegistration(Dynamic registration) {
+        registration.setMultipartConfig(new MultipartConfigElement(""));
+    }
+
+    
+    
 }

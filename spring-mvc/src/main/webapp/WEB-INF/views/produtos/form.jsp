@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,29 +10,46 @@
         <title>Formulário</title>
     </head>
     <body>
-        <form action="/spring-mvc/produtos" method="POST"> 
+        <!--
+            form:form -> Importação de biblioteca linha 3.
+            s -> Importação de biblioteca linha 4.
+            PC -> Abreviação do nome do controller: ProdutosController, seguido do nome do método.
+        -->
+        <form:form action="${s:mvcUrl('PC#postProdutos').build()}" method="POST" commandName="produto"
+                   enctype="multipart/form-data"> 
             <div>
                 <label>Título</label>
-                <input type="text" name="titulo"/>
+                <form:input path="titulo" />
+                <form:errors path="titulo"/>
             </div>
             <div>
                 <label>Descricao</label>
-                <textarea rows="10" cols="20" name="descricao"></textarea>
+                <form:textarea path="descricao" rows="10" cols="20"/>
+                <form:errors path="descricao"/>
             </div>
             <div>
                 <label>Páginas </label>
-                <input type="text" name="paginas"/>
+                <form:input path="paginas" />
+                <form:errors path="paginas" />
             </div>
-
+            <div>
+                <label>Data de Lançamento</label>
+                <input name="dataLancamento" type="text" />
+                <form:errors path="dataLancamento" />
+            </div>
+            <div>
+                <label>Sumário</label>
+                <input name="sumario" type="file" />
+            </div>
             <c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
                 <div>
                     <label>${tipoPreco}</label>
-                    <input type="text" name="precos[${status.index}].valor" />
-                    <input type="hidden" name="precos[${status.index}].tipo" value="${tipoPreco}" />
+                    <form:input path="precos[${status.index}].valor" />
+                    <form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
                 </div>
             </c:forEach>
 
             <button type="submit">Cadastrar</button>
-        </form>
+        </form:form>
     </body>
 </html>

@@ -6,29 +6,29 @@ import java.math.BigDecimal;
 /**
  * @Embeddable significa que a classe está inclusa em uma outra, no caso, Preco
  * está 'embedded' em Produto.
- * 
+ *
  * @author Carlos H
  */
 @Embeddable
 public class Preco {
 
-    private BigDecimal preco;
-    private TipoPreco tipoPreco;
+    private BigDecimal valor;
+    private TipoPreco tipo;
 
-    public BigDecimal getPreco() {
-        return preco;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
-    public TipoPreco getTipoPreco() {
-        return tipoPreco;
+    public TipoPreco getTipo() {
+        return tipo;
     }
 
-    public void setTipoPreco(TipoPreco tipoPreco) {
-        this.tipoPreco = tipoPreco;
+    public void setTipo(TipoPreco tipo) {
+        this.tipo = tipo;
     }
 
 }
